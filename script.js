@@ -68,8 +68,6 @@ const validate = (key) => {
 
 // FINISHED TYPING
 const gameOver = () => {
-  console.log('Inside gameover');
-  // document.removeEventListener('keydown', typeController(e));
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
@@ -79,12 +77,10 @@ const gameOver = () => {
   resultModal.innerHTML = "";
   resultModal.classList.remove("hidden");
   modalBackground.classList.remove("hidden");
-  // const finalresult = document.getElementById('final-result');
   // clear user text
   display.innerHTML = "";
   // make it inactive
   display.classList.add("inactive");
-  // finalresult.classList.add("final-result");
   // show result
   resultModal.innerHTML += `
     <h1>Finished!</h1>
@@ -97,7 +93,6 @@ const gameOver = () => {
   addHistory(questionText, timeTaken, errorCount);
 
   // restart everything
-
   startTime = null;
   errorCount = 0;
   userText = "";
@@ -107,6 +102,7 @@ const gameOver = () => {
 const closeModal = () => {
   modalBackground.classList.toggle("hidden");
   resultModal.classList.toggle("hidden");
+  location.reload()
 };
 
 // START Countdown
