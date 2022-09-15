@@ -6,10 +6,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style>
+        .container {
+            margin: 20px 20px;
+            padding: 10px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        h1 {
+            color: greenyellow;
+        }
+    </style>
 </head>
 
-<body>
 
+<body style="color: white;">
+    <div class="container" style="text-align: center;">
+        <h1>Frequently asked Questions</h1>
+    </div>
+    <div class="container">
+        <h1>Q-1) What is the Difference between global and local scope?</h1>
+        <p>
+            Ans:<br>
+            scope of a variable is the region of your program in which it is defined. JavaScript variables have only
+            two scopes.
+
+            Global Variables − A global variable has a global scope which means it can be defined anywhere in your
+            JavaScript code.
+
+            Local Variables − A local variable will be visible only within a function where it is defined. Function
+            parameters are always local to that function.</p>
+    </div>
+    <div class="container">
+        <h1>Q-2) What is the Difference between local storage and session storage?</h1>
+        <p>
+            Ans: <br>
+            Local Storage: <br>
+            The storage capacity of local storage is 5MB/10MB.As it is not session-based, it must be deleted via
+            javascript or manually. The client can only read local storage. <br> <br>
+            Session Stoarage: <br>
+            The storage capacity of session storage is 5MB. It’s session-based and works per window or tab. This
+            means that data is stored only for the duration of a session, i.e., until the browser (or tab) is
+            closed. The client can only read local storage. <br> <br>
+        </p>
+    </div>
+    <div class="container">
+        <h1>Q-3)How does javaScript event loop work?</h1>
+        <p>Ans:<br>The Event Loop has one simple job — to monitor the Call Stack and the Callback Queue. If the Call
+            Stack is
+            empty, the Event Loop will take the first event from the queue and will push it to the Call Stack, which
+            effectively runs it.
+
+            Such an iteration is called a tick in the Event Loop. Each event is just a function callback</p>
+    </div>
+    <div class="container">
+        <h1>Q-4)How many ways we can get undefined?</h1>
+        <p>
+            Ans: <br>
+            8 ways to get Undefine <br>
+            1. variable that is not initialized will give undefined<br>
+            2. function with no return<br>
+            3. parameter that is not passed will be undefined<br>
+            4. if return has nothing on the right side will return undefined<br>
+            5. property that doesn't exists on an object will give you undefined<br>
+            6. accessing array elements outside of the index range<br>
+            7. deleting an element inside an array<br>
+            8. set a value directly to undefined<br><br>
+
+        </p>
+    </div>
 </body>
 
 </html>
