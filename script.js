@@ -27,6 +27,7 @@ document.addEventListener("keydown", function typeController(e) {
   // Handle backspace press
   if (newLetter == "Backspace") {
     userText = userText.slice(0, userText.length - 1);
+    errorCount++;
     return display.removeChild(display.lastChild);
   }
 
@@ -91,11 +92,12 @@ const gameOver = () => {
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
     <button onclick="closeModal()">Close</button>
   `;
-  finalresult.appendChild(resultModal);
+  // finalresult.appendChild(resultModal);
 
   addHistory(questionText, timeTaken, errorCount);
 
   // restart everything
+
   startTime = null;
   errorCount = 0;
   userText = "";
