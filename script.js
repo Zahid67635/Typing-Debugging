@@ -1,6 +1,6 @@
 const display = document.getElementById("display");
 const question = document.getElementById("question");
-const startBtn = document.getElementById("start");
+// const startBtn = ;
 const countdownOverlay = document.getElementById("countdown");
 const resultModal = document.getElementById("result");
 const modalBackground = document.getElementById("modal-background");
@@ -20,7 +20,8 @@ fetch("./texts.json")
   });
 
 // checks the user typed character and displays accordingly
-const typeController = (e) => {
+document.addEventListener("keydown", function typeController(e) {
+  // console.log(e.key);
   const newLetter = e.key;
 
   // Handle backspace press
@@ -52,7 +53,10 @@ const typeController = (e) => {
   if (questionText === userText) {
     gameOver();
   }
-};
+});
+// const typeController = (e) => {
+
+// };
 
 const validate = (key) => {
   if (key === questionText[userText.length - 1]) {
@@ -63,7 +67,8 @@ const validate = (key) => {
 
 // FINISHED TYPING
 const gameOver = () => {
-  document.removeEventListener("keydown", typeController);
+  console.log('Inside gameover');
+  // document.removeEventListener('keydown', typeController(e));
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
@@ -71,12 +76,14 @@ const gameOver = () => {
 
   // show result modal
   resultModal.innerHTML = "";
-  resultModal.classList.toggle("hidden");
-  modalBackground.classList.toggle("hidden");
+  resultModal.classList.remove("hidden");
+  modalBackground.classList.remove("hidden");
+  // const finalresult = document.getElementById('final-result');
   // clear user text
   display.innerHTML = "";
   // make it inactive
   display.classList.add("inactive");
+  // finalresult.classList.add("final-result");
   // show result
   resultModal.innerHTML += `
     <h1>Finished!</h1>
@@ -84,6 +91,7 @@ const gameOver = () => {
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
     <button onclick="closeModal()">Close</button>
   `;
+  finalresult.appendChild(resultModal);
 
   addHistory(questionText, timeTaken, errorCount);
 
@@ -99,32 +107,35 @@ const closeModal = () => {
   resultModal.classList.toggle("hidden");
 };
 
-const start = () => {
+// START Countdown
+document.getElementById('starts').addEventListener('click', function start() {
   // If already started, do not start again
-  if (startTime) return;
+  if (startTime) {
+    return;
+  }
 
   let count = 3;
   countdownOverlay.style.display = "flex";
 
   const startCountdown = setInterval(() => {
-    countdownOverlay.innerHTML = '<h1>${count}</h1>';
+    countdownOverlay.innerHTML = `<h1>${count}</h1>`;
 
     // finished timer
-    if (count == 0) {
+    if (count === 0) {
+      clearInterval(startCountdown);
+      countdownOverlay.style.display = "none";
       // -------------- START TYPING -----------------
-      document.addEventListener("keydown", typeController);
-      countdownOverlay.style.display = "flex";
+      // document.addEventListener("keydown", typeController());
+      // typeController();
+      // countdownOverlay.style.display = "flex";
       display.classList.remove("inactive");
 
-      clearInterval(startCountdown);
+
       startTime = new Date().getTime();
     }
     count--;
   }, 1000);
-};
-
-// START Countdown
-startBtn.addEventListener("click", start());
+});
 
 // If history exists, show it
 displayHistory();
@@ -135,5 +146,5 @@ setInterval(() => {
   const timeSpent = (currentTime - startTime) / 1000;
 
 
-  document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
+  document.getElementById("show-time").innerHTML = `${startTime ? parseInt(timeSpent) : 0} seconds`;
 }, 1000);
